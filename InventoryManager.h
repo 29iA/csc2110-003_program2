@@ -21,6 +21,6 @@ class InventoryManager
 		void buyWidgets(double cost, int num_to_buy);
 		double getTotalProfit();
 		double sellWidgets(double price, int num_to_sell);
-}
+};
 
 #endif

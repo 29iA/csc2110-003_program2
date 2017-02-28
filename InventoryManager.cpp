@@ -3,9 +3,9 @@
 #include <iostream>
 using namespace std;
 
-InventoryManager::InventoryManager(int inventory_choice)
+InventoryManager::InventoryManager(int inv_choice)
 {
-	inventory_choice = choice;
+	inventory_choice = inv_choice;
 	profit = 0.0;
 	
 	if (inventory_choice == 1) //stack 
@@ -44,11 +44,11 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 {
 	Widget* wg;
 	
-	//getting size of stack/queue
-	if (inventory_choice == 1)
-		int stack_size = stack->size();
-	else
-		int queue_size = queue->size();
+	// getting size of stack/queue
+	// if (inventory_choice == 1)
+		// int stack_size = stack->size();
+	// else
+		// int queue_size = queue->size();
 	
 	//checking input
 	if (num_to_sell < 0) return profit;
@@ -56,13 +56,13 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 	//checking if input is greater than stack
 	if (inventory_choice == 1)
 	{
-		if (num_to_sell > stack_size)
-			num_to_sell = stack_size;
+		if (num_to_sell > stack->size())
+			num_to_sell = stack->size();
 	}
 	else
 	{
-		if (num_to_sell > queue_size)
-			num_to_sell = queue_size;
+		if (num_to_sell > queue->size())
+			num_to_sell = queue->size();
 	}		
 	
 	//calculating profit
@@ -72,6 +72,9 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 		{
 			wg = stack->pop();
 			profit = profit + (price - wg->getCost());
+			
+			//test string
+			cout << profit << endl;
 		}
 	}
 	else
@@ -80,6 +83,9 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 		{
 			wg = queue->dequeue();
 			profit = profit + (price - wg->getCost());
+			
+			//test string
+			cout << profit << endl;
 		}
 	}
 	
