@@ -2,8 +2,8 @@
 #define NULL 0
 #endif
 
-#if !defined (DequeArray_H)
-#define DequeArray_H
+#if !defined _DEQUEARRAY_H
+#define _DEQUEARRAY_H
 
 template < class T >
 class DequeArray
