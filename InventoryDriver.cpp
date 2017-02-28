@@ -19,28 +19,25 @@ int inventoryChoice()
 //buy Widgets (check invalid input and reprompt if necessary)
 void buyWidgets(InventoryManager* im)
 {
+	Keyboard* kb = Keyboard::getKeyboard();
+	
+	int widgetAmount = kb->getValidatedInt("How many widgets do you wish to buy? ", 1, 999);
+	double widgetCost = kb->getValidatedDouble("What is the cost for each widget? ", 0.01, 999999.0);
 
-
-
-
-
-
-
-
+	im->buyWidgets(widgetCost, widgetAmount);
 }
 
 //DO THIS
 //sell Widgets and return the profit (check invalid input and reprompt if necessary)
 double sellWidgets(InventoryManager* im)
 {
+	Keyboard* kb = Keyboard::getKeyboard();
 
+	int widgetAmount = kb->getValidatedInt("How many widgets do you wish to sell? ", 1, 999);
+	double widgetCost = kb->getValidatedDouble("What is the selling price for each widget? ", 0.01, 999999.0);
 
-
-
-
-
-
-
+	double profit = im->sellWidgets(widgetCost, widgetAmount);
+	return profit;
 }
 
 bool mainMenu(InventoryManager* im)
