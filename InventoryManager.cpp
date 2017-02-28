@@ -42,14 +42,6 @@ double InventoryManager::getTotalProfit()
 
 double InventoryManager::sellWidgets(double price, int num_to_sell)
 {
-	Widget* wg;
-	
-	// getting size of stack/queue
-	// if (inventory_choice == 1)
-		// int stack_size = stack->size();
-	// else
-		// int queue_size = queue->size();
-	
 	//checking input
 	if (num_to_sell < 0) return profit;
 	
@@ -70,7 +62,7 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 	{
 		for (int i = 0; i < num_to_sell; i++)
 		{
-			wg = stack->pop();
+			Widget* wg = stack->pop();
 			profit = profit + (price - wg->getCost());
 			
 			//test string
@@ -81,7 +73,7 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 	{
 		for (int i = 0; i < num_to_sell; i++)
 		{
-			wg = queue->dequeue();
+			Widget* wg = queue->dequeue();
 			profit = profit + (price - wg->getCost());
 			
 			//test string
