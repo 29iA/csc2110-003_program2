@@ -2,38 +2,40 @@
 #define NULL 0
 #endif
 
-#if !defined (QUEUEARRAY_H)
-#define QUEUEARRAY_H
+#if !defined _DEQUEARRAY_H
+#define _DEQUEARRAY_H
 
 template < class T >
-class QueueArray
+class DequeArray
 {
-
-   private:
-      int max_queue;
-      T** items;
-      int front;
-      int back;
-      int sz;
-
-      void arrayResize(int new_size);
-
-   public:
-      QueueArray(); //constructor
-      ~QueueArray(); //destructor
-
-      bool isEmpty();
-      int size();
-      void dequeueAll();
-
-      T* peek();
-      void enqueue(T* item);
-      T* dequeue();
-
+	private:
+		int max_queue;
+		T** items;
+		int front;
+		int back;
+		int sz;
+		
+		void arrayResize();
+	
+	public:
+		DequeArray();
+		~DequeArray();
+		
+		bool isEmpty();
+		int size();
+		void dequeueAll();
+		
+		T* peek();
+		void enqueue(T* item);
+		T* dequeue();
+		
+		T* peekDeque();
+		void enqueueDeque(T* item);
+		T* dequeueDeque();
 };
 
 template < class T >
-QueueArray<T>::QueueArray() 
+DequeArray<T>::DequeArray() 
 {
    max_queue = 2;
    items = new T*[max_queue];  
@@ -43,25 +45,25 @@ QueueArray<T>::QueueArray()
 }  
 
 template < class T >
-QueueArray<T>::~QueueArray() 
+DequeArray<T>::~DequeArray() 
 {
    delete[] items;
 } 
 
 template < class T >
-bool QueueArray<T>::isEmpty() 
+bool DequeArray<T>::isEmpty() 
 {
    return sz == 0;
 }  
 
 template < class T >
-int QueueArray<T>::size()
+int DequeArray<T>::size()
 {
    return sz;
 }
 
 template < class T >
-T* QueueArray<T>::peek()
+T* DequeArray<T>::peek()
 {
    T* item = NULL;
    if (!isEmpty()) 
@@ -72,11 +74,11 @@ T* QueueArray<T>::peek()
 } 
 
 template < class T >
-void QueueArray<T>::enqueue(T* item)
+void DequeArray<T>::enqueue(T* item)
 {
    if (sz == max_queue)
    {
-      arrayResize(2*max_queue);
+      arrayResize();
    }
 
    //back = (back + 1) % (max_queue);
@@ -87,7 +89,7 @@ void QueueArray<T>::enqueue(T* item)
 } 
 
 template < class T >
-T* QueueArray<T>::dequeue() 
+T* DequeArray<T>::dequeue() 
 {
    T* item = NULL;
 
@@ -105,8 +107,9 @@ T* QueueArray<T>::dequeue()
 }
 
 template < class T >
-void QueueArray<T>::arrayResize(int new_size)
+void DequeArray<T>::arrayResize()
 {
+	int new_size = max_queue * 2;
    T** temp = new T*[new_size];
    int j = front;
 
@@ -126,7 +129,7 @@ void QueueArray<T>::arrayResize(int new_size)
 }
 
 template < class T >
-void QueueArray<T>::dequeueAll() 
+void DequeArray<T>::dequeueAll() 
 {
    delete[] items;
 
@@ -135,6 +138,50 @@ void QueueArray<T>::dequeueAll()
    front = 0;
    back = max_queue - 1;
    sz = 0;
-} 
+}
+
+template < class T >
+void DequeArray<T>::enqueueDeque(T* item)
+{
+	if (sze == max_queue)
+		arrayResize();
+
+	front = front - 1;
+
+	if (front == -1)
+		front = (max_queue - 1);
+	
+	items[front] = item;
+	sze++;
+}
+
+template < class T >
+T* DequeArray<T>::dequeueDeque()
+{
+	T* item = NULL;
+
+	if (!isEmpty())
+	{
+		item = items[back];
+		items[back] = NULL;
+		back = back - 1;
+
+		if (back == -1)
+			back = (max_queue - 1);
+			
+		sze--;
+	}
+}
+
+template < class T >
+T* DequeArray<T>::peekDeque()
+{
+	T* item = NULL;
+
+	if (!isEmpty())
+		item = items[back];
+
+	return item;
+}
 
 #endif
