@@ -19,8 +19,8 @@ class QueueArray
       void arrayResize(int new_size);
 
    public:
-      QueueArray();
-      ~QueueArray();
+      QueueArray(); //constructor
+      ~QueueArray(); //destructor
 
       bool isEmpty();
       int size();
