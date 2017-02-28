@@ -143,7 +143,7 @@ void DequeArray<T>::dequeueAll()
 template < class T >
 void DequeArray<T>::enqueueDeque(T* item)
 {
-	if (sze == max_queue)
+	if (sz == max_queue)
 		arrayResize();
 
 	front = front - 1;
@@ -152,7 +152,7 @@ void DequeArray<T>::enqueueDeque(T* item)
 		front = (max_queue - 1);
 	
 	items[front] = item;
-	sze++;
+	sz++;
 }
 
 template < class T >
@@ -169,7 +169,7 @@ T* DequeArray<T>::dequeueDeque()
 		if (back == -1)
 			back = (max_queue - 1);
 			
-		sze--;
+		sz--;
 	}
 }
 
