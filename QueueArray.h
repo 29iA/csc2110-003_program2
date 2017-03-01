@@ -2,8 +2,8 @@
 #define NULL 0
 #endif
 
-#if !defined (QUEUEARRAY_H)
-#define QUEUEARRAY_H
+#if !defined _QUEUEARRAY_H
+#define _QUEUEARRAY_H
 
 template < class T >
 class QueueArray
@@ -79,9 +79,9 @@ void QueueArray<T>::enqueue(T* item)
       arrayResize(2*max_queue);
    }
 
-   //back = (back + 1) % (max_queue);
-   back = back + 1;
+   back++;
    if (back == max_queue) back = 0;
+	
    items[back] = item;
    sz++;
 } 
@@ -95,9 +95,10 @@ T* QueueArray<T>::dequeue()
    {
       item = items[front];
       items[front] = NULL;
-      //front = (front + 1) % (max_queue);
-      front = front + 1;
+
+      front++;
       if (front == max_queue) front = 0;
+		
       sz--;
    }
 
