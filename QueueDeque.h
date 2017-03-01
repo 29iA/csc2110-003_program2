@@ -15,7 +15,8 @@ class QueueDeque
 		
 		bool isEmpty();
 		int size();
-		void dequeueAll();
+		void dequeueAll(); //calls dequeueAll
+		
 		T* peek();
 		void enqueue(T* item);
 		T* dequeue();

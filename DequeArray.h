@@ -18,20 +18,20 @@ class DequeArray
 		void arrayResize();
 	
 	public:
-		DequeArray();
-		~DequeArray();
-		
+		DequeArray(); //constructor
+		~DequeArray(); //destructor
+
 		bool isEmpty();
 		int size();
-		void dequeueAll();
+		void dequeueAll(); //delete and reconstruct array
 		
-		T* peek();
-		void enqueue(T* item);
-		T* dequeue();
+		T* peek(); //see front item
+		void enqueue(T* item); //add item to front of array
+		T* dequeue(); //remove item front of array and returns it
 		
-		T* peekDeque();
-		void enqueueDeque(T* item);
-		T* dequeueDeque();
+		T* peekDeque(); //see back item
+		void enqueueDeque(T* item); //add item to back of array
+		T* dequeueDeque(); //remove item front of array and returns it
 };
 
 template < class T >
