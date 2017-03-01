@@ -52,7 +52,7 @@ bool mainMenu(InventoryManager* im)
       buyWidgets(im);
       return 1;
    }
-   else if(menu_choice == 2)
+   else if (menu_choice == 2)
    {
       sellWidgets(im);
       return 1;

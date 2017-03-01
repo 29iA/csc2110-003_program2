@@ -66,7 +66,7 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 			profit = profit + (price - wg->getCost());
 			
 			//test string
-			cout << profit << endl;
+			// cout << profit << endl;
 		}
 	}
 	else
@@ -77,7 +77,7 @@ double InventoryManager::sellWidgets(double price, int num_to_sell)
 			profit = profit + (price - wg->getCost());
 			
 			//test string
-			cout << profit << endl;
+			// cout << profit << endl;
 		}
 	}
 	
