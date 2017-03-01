@@ -15,10 +15,11 @@ class StackDeque
 		
 		bool isEmpty();
 		int size();
-		void popAll();
-		T* peek();
-		void push(T* item);
-		T* pop();
+		void popAll(); //calls dequeueAll
+		
+		T* peek(); //calls peekDeque
+		void push(T* item); //calls enqueue
+		T* pop(); //calls dequeueDeque
 };
 
 template < class T >

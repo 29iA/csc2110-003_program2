@@ -18,20 +18,20 @@ class DequeArray
 		void arrayResize();
 	
 	public:
-		DequeArray();
-		~DequeArray();
-		
+		DequeArray(); //constructor
+		~DequeArray(); //destructor
+
 		bool isEmpty();
 		int size();
-		void dequeueAll();
+		void dequeueAll(); //delete and reconstruct array
 		
-		T* peek();
-		void enqueue(T* item);
-		T* dequeue();
+		T* peek(); //see front item
+		void enqueue(T* item); //add item to front of array
+		T* dequeue(); //remove item front of array and returns it
 		
-		T* peekDeque();
-		void enqueueDeque(T* item);
-		T* dequeueDeque();
+		T* peekDeque(); //see back item
+		void enqueueDeque(T* item); //add item to back of array
+		T* dequeueDeque(); //remove item front of array and returns it
 };
 
 template < class T >
@@ -76,13 +76,12 @@ T* DequeArray<T>::peek()
 template < class T >
 void DequeArray<T>::enqueue(T* item)
 {
+	if (item == NULL) return;
+	
    if (sz == max_queue)
-   {
-      arrayResize();
-   }
+		arrayResize();
 
-   //back = (back + 1) % (max_queue);
-   back = back + 1;
+	back++;
    if (back == max_queue) back = 0;
    items[back] = item;
    sz++;
@@ -97,10 +96,13 @@ T* DequeArray<T>::dequeue()
    {
       item = items[front];
       items[front] = NULL;
-      //front = (front + 1) % (max_queue);
-      front = front + 1;
-      if (front == max_queue) front = 0;
-      sz--;
+
+      front++;
+      if (front == max_queue) 
+		{
+			front = 0;
+      }
+		sz--;
    }
 
    return item; 
@@ -143,34 +145,39 @@ void DequeArray<T>::dequeueAll()
 template < class T >
 void DequeArray<T>::enqueueDeque(T* item)
 {
-	if (sze == max_queue)
+	if (item == NULL) return;
+	
+	if (sz == max_queue)
 		arrayResize();
 
-	front = front - 1;
+	front--;
 
 	if (front == -1)
-		front = (max_queue - 1);
+		front = max_queue - 1;
 	
 	items[front] = item;
-	sze++;
+	sz++;
 }
 
 template < class T >
 T* DequeArray<T>::dequeueDeque()
 {
 	T* item = NULL;
-
+	
 	if (!isEmpty())
 	{
 		item = items[back];
 		items[back] = NULL;
-		back = back - 1;
-
+		
+		back--;
 		if (back == -1)
-			back = (max_queue - 1);
-			
-		sze--;
+		{
+			back = max_queue - 1;
+		}
+		sz--;
 	}
+	
+	return item;
 }
 
 template < class T >
